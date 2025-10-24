@@ -95,6 +95,7 @@ body {
 
 .nav-btn {
   background: rgba(255, 255, 255, 0.8);
+  color: #333;
   border: 3px solid transparent;
   padding: 12px 20px;
   border-radius: 25px;
@@ -300,6 +301,9 @@ body {
   margin: 0.5rem 0;
   border-radius: 10px;
   border-left: 4px solid #ff69b4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #favAnimal {
@@ -1004,6 +1008,30 @@ button {
 button:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Delete Food Button */
+.delete-food-btn {
+  background: #ff6b6b !important;
+  color: white !important;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-food-btn:hover {
+  background: #ff5252 !important;
+  transform: scale(1.1);
+  box-shadow: 0 3px 10px rgba(255, 107, 107, 0.4);
 }
 
 input,
