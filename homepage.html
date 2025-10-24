@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Willa's Awesome Homepage! 🌟</title>
+    <link rel="stylesheet" href="homepage.css" />
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header class="header">
+      <h1 id="mainTitle">Willa's Awesome Homepage! 🌟</h1>
+      <p id="tagline">Welcome to my super cool corner of the internet!</p>
+      <button id="randomTitleBtn">🎲 Random Title</button>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+      <button class="nav-btn active" data-section="about">About Me</button>
+      <button class="nav-btn" data-section="favorites">My Favorites</button>
+      <button class="nav-btn" data-section="games">My Games</button>
+      <button class="nav-btn" data-section="drawing">Drawing Board</button>
+      <button class="nav-btn" data-section="customize">Customize</button>
+      <button class="nav-btn" data-section="secrets">Secret Stuff</button>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- About Section -->
+      <section id="about" class="content-section active">
+        <h2>Hi! I'm Willa! 👋</h2>
+        <div class="profile-card">
+          <div class="avatar" id="avatar">🎀</div>
+          <p id="aboutText">
+            I'm 11 years old and I love coding, drawing, and making cool stuff
+            on the computer!
+          </p>
+          <button id="changeAvatarBtn">🎭 Change My Avatar</button>
+          <button id="changeAboutBtn">✏️ Edit About Me</button>
+        </div>
+
+        <div class="mood-meter">
+          <h3>My Mood Today: <span id="moodDisplay">Happy! 😊</span></h3>
+          <input type="range" id="moodSlider" min="1" max="10" value="8" />
+          <div class="mood-labels">
+            <span>😢 Sad</span>
+            <span>😊 Happy</span>
+            <span>🤩 Amazing!</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Favorites Section -->
+      <section id="favorites" class="content-section">
+        <h2>My Favorite Things! ⭐</h2>
+        <div class="favorites-grid">
+          <div class="favorite-item">
+            <h3>Favorite Color</h3>
+            <div class="color-picker">
+              <input type="color" id="favColor" value="#ff69b4" />
+              <p id="colorName">Pink!</p>
+            </div>
+          </div>
+
+          <div class="favorite-item">
+            <h3>Favorite Food</h3>
+            <input
+              type="text"
+              id="favFood"
+              placeholder="Type your favorite food!"
+              value="Pizza"
+            />
+            <button id="addFoodBtn">Add to List</button>
+            <ul id="foodList">
+              <li>Pizza</li>
+              <li>Ice Cream</li>
+            </ul>
+          </div>
+
+          <div class="favorite-item">
+            <h3>Favorite Animal</h3>
+            <select id="favAnimal">
+              <option value="🐱">Cat</option>
+              <option value="🐶">Dog</option>
+              <option value="🐰">Rabbit</option>
+              <option value="🦄">Unicorn</option>
+              <option value="🐸">Frog</option>
+              <option value="🦋">Butterfly</option>
+            </select>
+            <p id="animalDisplay">🐱</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Games Section -->
+      <section id="games" class="content-section">
+        <h2>My Games! 🎮</h2>
+        <div class="games-container">
+          <div class="game-card">
+            <h3>Number Guessing Game</h3>
+            <p>Guess the secret number!</p>
+            <a href="index.html" class="play-btn">Play Now!</a>
+          </div>
+
+          <div class="game-card">
+            <h3>Rock Paper Scissors</h3>
+            <p>Challenge the computer!</p>
+            <button id="rpsBtn" class="play-btn">Play RPS</button>
+            <div id="rpsResult" class="game-result"></div>
+          </div>
+
+          <div class="game-card">
+            <h3>Color Mixer</h3>
+            <p>Mix colors and see what happens!</p>
+            <div class="color-mixer">
+              <input type="color" id="color1" value="#ff0000" />
+              <input type="color" id="color2" value="#0000ff" />
+              <div id="mixedColor"></div>
+            </div>
+          </div>
+
+          <div class="game-card">
+            <h3>Memory Game</h3>
+            <p>Test your memory!</p>
+            <button id="memoryBtn" class="play-btn">Play Memory</button>
+            <div id="memoryResult" class="game-result"></div>
+          </div>
+
+          <div class="game-card">
+            <h3>Reaction Test</h3>
+            <p>How fast can you click?</p>
+            <button id="reactionBtn" class="play-btn">Start Test</button>
+            <div id="reactionResult" class="game-result"></div>
+          </div>
+
+          <div class="game-card">
+            <h3>Word Scramble</h3>
+            <p>Unscramble the word!</p>
+            <div class="scramble-controls">
+              <label>Letters: <span id="letterCountDisplay">4</span></label>
+              <input
+                type="range"
+                id="letterCountSlider"
+                min="3"
+                max="8"
+                value="4"
+              />
+            </div>
+            <button id="scrambleBtn" class="play-btn">New Word</button>
+            <div id="scrambleResult" class="game-result"></div>
+          </div>
+
+          <div class="game-card">
+            <h3>Lucky Slots 🎰</h3>
+            <p>Spin to win! 💰</p>
+            <div class="money-display">
+              Money: $<span id="playerMoney">100</span>
+            </div>
+            <button id="slotsBtn" class="play-btn">Spin ($10)</button>
+            <div id="slotsResult" class="game-result"></div>
+          </div>
+
+          <div class="game-card">
+            <h3>Simon Says</h3>
+            <p>Follow the pattern!</p>
+            <button id="simonBtn" class="play-btn">Start Simon</button>
+            <div id="simonResult" class="game-result"></div>
+          </div>
+
+          <div class="game-card">
+            <h3>Guess the Number</h3>
+            <p>Think of a number!</p>
+            <button id="guessNumberBtn" class="play-btn">Start Guessing</button>
+            <div id="guessNumberResult" class="game-result"></div>
+          </div>
+
+          <div class="game-card">
+            <h3>Typing Test</h3>
+            <p>Type as fast as you can!</p>
+            <button id="typingBtn" class="play-btn">Start Test</button>
+            <div id="typingResult" class="game-result"></div>
+          </div>
+
+          <div class="game-card">
+            <h3>Color Match</h3>
+            <p>Match the colors!</p>
+            <button id="colorMatchBtn" class="play-btn">Start Game</button>
+            <div id="colorMatchResult" class="game-result"></div>
+          </div>
+
+          <div class="game-card">
+            <h3>Math Quiz</h3>
+            <p>Solve the equations!</p>
+            <button id="mathQuizBtn" class="play-btn">Start Quiz</button>
+            <div id="mathQuizResult" class="game-result"></div>
+          </div>
+
+          <div class="game-card">
+            <h3>Memory Card</h3>
+            <p>Find matching pairs!</p>
+            <button id="memoryCardBtn" class="play-btn">Start Game</button>
+            <div id="memoryCardResult" class="game-result"></div>
+          </div>
+
+          <div class="game-card">
+            <h3>Snake Game</h3>
+            <p>Eat the food!</p>
+            <button id="snakeBtn" class="play-btn">Start Snake</button>
+            <div id="snakeResult" class="game-result"></div>
+          </div>
+
+          <div class="game-card">
+            <h3>Puzzle Game</h3>
+            <p>Arrange the tiles!</p>
+            <button id="puzzleBtn" class="play-btn">Start Puzzle</button>
+            <div id="puzzleResult" class="game-result"></div>
+          </div>
+
+          <div class="game-card">
+            <h3>Hangman</h3>
+            <p>Guess the word!</p>
+            <button id="hangmanBtn" class="play-btn">Start Game</button>
+            <div id="hangmanResult" class="game-result"></div>
+          </div>
+
+          <div class="game-card">
+            <h3>Whack-a-Mole</h3>
+            <p>Hit the moles!</p>
+            <button id="whackMoleBtn" class="play-btn">Start Game</button>
+            <div id="whackMoleResult" class="game-result"></div>
+          </div>
+
+          <div class="game-card">
+            <h3>Quiz Game</h3>
+            <p>Answer the questions!</p>
+            <button id="quizBtn" class="play-btn">Start Quiz</button>
+            <div id="quizResult" class="game-result"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Drawing Section -->
+      <section id="drawing" class="content-section">
+        <h2>My Drawing Board! 🎨</h2>
+        <div class="drawing-tools">
+          <button id="clearCanvas">🗑️ Clear</button>
+          <input type="color" id="drawColor" value="#000000" />
+          <input type="range" id="brushSize" min="1" max="20" value="5" />
+          <span>Brush Size: <span id="brushSizeDisplay">5</span></span>
+        </div>
+        <canvas id="drawingCanvas" width="400" height="300"></canvas>
+      </section>
+
+      <!-- Customize Section -->
+      <section id="customize" class="content-section">
+        <h2>Customize My Page! 🎨</h2>
+        <div class="customize-container">
+          <div class="customize-section">
+            <h3>Background Colors</h3>
+            <div class="color-controls">
+              <label>Main Background:</label>
+              <input type="color" id="bgColor1" value="#ff9a9e" />
+              <label>Secondary Background:</label>
+              <input type="color" id="bgColor2" value="#fecfef" />
+              <button id="applyBgColors" class="apply-btn">
+                Apply Background
+              </button>
+            </div>
+          </div>
+
+          <div class="customize-section">
+            <h3>Text Colors</h3>
+            <div class="color-controls">
+              <label>Title Color:</label>
+              <input type="color" id="titleColor" value="#ff69b4" />
+              <label>Text Color:</label>
+              <input type="color" id="textColor" value="#333333" />
+              <label>Button Color:</label>
+              <input type="color" id="buttonColor" value="#667eea" />
+              <button id="applyTextColors" class="apply-btn">
+                Apply Colors
+              </button>
+            </div>
+          </div>
+
+          <div class="customize-section">
+            <h3>Quick Themes</h3>
+            <div class="theme-buttons">
+              <button id="pinkTheme" class="theme-btn">🌸 Pink Theme</button>
+              <button id="blueTheme" class="theme-btn">🌊 Blue Theme</button>
+              <button id="greenTheme" class="theme-btn">🌿 Green Theme</button>
+              <button id="purpleTheme" class="theme-btn">
+                💜 Purple Theme
+              </button>
+              <button id="resetTheme" class="theme-btn">🔄 Reset</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Secrets Section -->
+      <section id="secrets" class="content-section">
+        <h2>Secret Stuff! 🤫</h2>
+        <div class="secret-container">
+          <h3>Password Protected</h3>
+          <input
+            type="password"
+            id="secretPassword"
+            placeholder="Enter secret password"
+          />
+          <button id="checkPassword">🔓 Check Password</button>
+          <div id="secretContent" class="hidden">
+            <h4>🎉 You found my secret!</h4>
+            <p>This is where I keep my super secret thoughts and ideas!</p>
+            <textarea
+              id="secretNotes"
+              placeholder="Write your secret thoughts here..."
+            ></textarea>
+            <button id="saveSecret">💾 Save Secret</button>
+          </div>
+        </div>
+
+        <div class="easter-eggs">
+          <h3>Easter Eggs 🥚</h3>
+          <p>
+            Try clicking different things on this page to find hidden surprises!
+          </p>
+          <div id="eggCounter">Eggs found: <span id="eggCount">0</span></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Made with ❤️ by Willa | <span id="visitCounter">Visits: 0</span></p>
+      <button id="rainbowBtn">🪩🪅PARTY MODE🥳🎉</button>
+    </footer>
+
+    <script src="homepage.js"></script>
+  </body>
+</html>
