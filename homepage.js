@@ -371,16 +371,16 @@ class WillasHomepage {
 
   deleteFavoriteFood(deleteBtn) {
     const li = deleteBtn.parentElement;
-    const foodText = li.querySelector('span').textContent;
-    
+    const foodText = li.querySelector("span").textContent;
+
     // Remove from DOM
     li.remove();
-    
+
     // Remove from localStorage
     const foods = JSON.parse(
       localStorage.getItem("favoriteFoods") || '["Pizza", "Ice Cream"]'
     );
-    const updatedFoods = foods.filter(food => food !== foodText);
+    const updatedFoods = foods.filter((food) => food !== foodText);
     localStorage.setItem("favoriteFoods", JSON.stringify(updatedFoods));
   }
 
@@ -1661,8 +1661,8 @@ class WillasHomepage {
         button: "#48bb78",
       },
       purple: {
-        bg1: "#a8edea",
-        bg2: "#fed6e3",
+        bg1: "#4a1a4a",
+        bg2: "#d946ef",
         title: "#9f7aea",
         text: "#553c9a",
         button: "#805ad5",
