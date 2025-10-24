@@ -72,8 +72,24 @@
             />
             <button id="addFoodBtn">Add to List</button>
             <ul id="foodList">
-              <li>Pizza</li>
-              <li>Ice Cream</li>
+              <li>
+                <span>Pizza</span>
+                <button
+                  class="delete-food-btn"
+                  onclick="homepage.deleteFavoriteFood(this)"
+                >
+                  ❌
+                </button>
+              </li>
+              <li>
+                <span>Ice Cream</span>
+                <button
+                  class="delete-food-btn"
+                  onclick="homepage.deleteFavoriteFood(this)"
+                >
+                  ❌
+                </button>
+              </li>
             </ul>
           </div>
 

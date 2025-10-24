@@ -353,7 +353,10 @@ class WillasHomepage {
     const food = this.favFood.value.trim();
     if (food) {
       const li = document.createElement("li");
-      li.textContent = food;
+      li.innerHTML = `
+        <span>${food}</span>
+        <button class="delete-food-btn" onclick="homepage.deleteFavoriteFood(this)">❌</button>
+      `;
       this.foodList.appendChild(li);
       this.favFood.value = "";
 
@@ -364,6 +367,21 @@ class WillasHomepage {
       foods.push(food);
       localStorage.setItem("favoriteFoods", JSON.stringify(foods));
     }
+  }
+
+  deleteFavoriteFood(deleteBtn) {
+    const li = deleteBtn.parentElement;
+    const foodText = li.querySelector('span').textContent;
+    
+    // Remove from DOM
+    li.remove();
+    
+    // Remove from localStorage
+    const foods = JSON.parse(
+      localStorage.getItem("favoriteFoods") || '["Pizza", "Ice Cream"]'
+    );
+    const updatedFoods = foods.filter(food => food !== foodText);
+    localStorage.setItem("favoriteFoods", JSON.stringify(updatedFoods));
   }
 
   updateFavoriteAnimal(animal) {
@@ -1967,7 +1985,10 @@ class WillasHomepage {
     this.foodList.innerHTML = "";
     savedFoods.forEach((food) => {
       const li = document.createElement("li");
-      li.textContent = food;
+      li.innerHTML = `
+        <span>${food}</span>
+        <button class="delete-food-btn" onclick="homepage.deleteFavoriteFood(this)">❌</button>
+      `;
       this.foodList.appendChild(li);
     });
 
