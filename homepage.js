@@ -2,7 +2,17 @@
 
 class WillasHomepage {
   constructor() {
-    this.currentSection = "about";
+    // Check if returning from number game
+    const returningFromNumberGame = sessionStorage.getItem(
+      "returningFromNumberGame"
+    );
+    if (returningFromNumberGame) {
+      this.currentSection = "games";
+      sessionStorage.removeItem("returningFromNumberGame");
+    } else {
+      this.currentSection = "about";
+    }
+
     this.visitCount = parseInt(localStorage.getItem("visitCount") || "0");
     this.eggCount = parseInt(localStorage.getItem("eggCount") || "0");
     this.secretPassword = "ummmhithisismypasswordhehe"; // Change this to whatever Willa wants!
@@ -232,6 +242,9 @@ class WillasHomepage {
 
     // Initialize money display
     this.playerMoney.textContent = this.playerMoneyAmount;
+
+    // Switch to the correct section
+    this.switchSection(this.currentSection);
   }
 
   switchSection(sectionName) {
@@ -253,7 +266,7 @@ class WillasHomepage {
 
     this.currentSection = sectionName;
   }
-
+  //COOL TITLES
   randomizeTitle() {
     const titles = [
       "Willa's Awesome Homepage! 🌟",
@@ -275,7 +288,7 @@ class WillasHomepage {
       this.mainTitle.style.animation = "bounce 1s ease-in-out";
     }, 10);
   }
-
+  //COOL AVATARS
   changeAvatar() {
     const avatars = [
       "🎀",
@@ -306,7 +319,7 @@ class WillasHomepage {
       localStorage.setItem("aboutText", newText.trim());
     }
   }
-
+  //COOL MOODS
   updateMood(value) {
     const moods = [
       "😢 Sad",
@@ -330,7 +343,7 @@ class WillasHomepage {
     this.colorName.textContent = this.getColorName(color);
     localStorage.setItem("favoriteColor", color);
   }
-
+  //UMMM
   getColorName(color) {
     // Simple color name mapping
     const colorMap = {
@@ -555,6 +568,12 @@ class WillasHomepage {
   }
 
   playReactionTest() {
+    // Prevent multiple reaction tests from running simultaneously
+    if (this.reactionTestActive) {
+      return;
+    }
+
+    this.reactionTestActive = true;
     this.reactionResult.innerHTML = `
        <div class="reaction-test">
          <p>Click the button when it turns green!</p>
@@ -570,12 +589,14 @@ class WillasHomepage {
     // Random delay between 1-5 seconds
     const delay = Math.random() * 4000 + 1000;
 
-    setTimeout(() => {
+    this.reactionTimeout = setTimeout(() => {
       reactionBtn.style.background = "#48bb78";
       reactionBtn.textContent = "CLICK NOW!";
       startTime = Date.now();
 
       reactionBtn.onclick = () => {
+        if (!this.reactionTestActive) return; // Prevent multiple clicks
+
         const reactionTime = Date.now() - startTime;
         timeDisplay.textContent = `Time: ${reactionTime}ms`;
         reactionBtn.style.background = "#ff6b6b";
@@ -588,14 +609,17 @@ class WillasHomepage {
         else message = "🐌 Keep practicing!";
 
         timeDisplay.innerHTML = `Time: ${reactionTime}ms<br>${message}`;
+
+        // Reset the flag after the test is complete
+        this.reactionTestActive = false;
       };
     }, delay);
   }
-
+  //WORD SCRAMBLE
   playWordScramble() {
     const letterCount = parseInt(this.letterCountSlider.value);
     const wordLists = {
-      3: ["CAT", "DOG", "SUN", "CAR", "BAT", "HAT", "MAT", "RAT"],
+      3: ["CAT", "DOG", "SUN", "CAR", "BAT", "HAT", "MAT", "RAT", "app", "ate"],
       4: ["MOON", "STAR", "TREE", "BOOK", "CAKE", "BIRD", "FISH", "FROG"],
       5: [
         "HOUSE",
@@ -606,6 +630,8 @@ class WillasHomepage {
         "DANCE",
         "SMILE",
         "LIGHT",
+        "happy",
+        "angry",
       ],
       6: [
         "GARDEN",
@@ -641,10 +667,19 @@ class WillasHomepage {
 
     const words = wordLists[letterCount] || wordLists[4];
     const word = words[Math.floor(Math.random() * words.length)];
-    const scrambled = word
-      .split("")
-      .sort(() => Math.random() - 0.5)
-      .join("");
+
+    // Proper Fisher-Yates shuffle to ensure words are scrambled
+    const letters = word.split("");
+    for (let i = letters.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [letters[i], letters[j]] = [letters[j], letters[i]];
+    }
+    const scrambled = letters.join("");
+
+    // If the scrambled word is the same as the original, try again
+    if (scrambled === word) {
+      return this.playWordScramble(); // Recursively try again
+    }
 
     this.scrambleResult.innerHTML = `
        <div class="scramble-game">
@@ -1681,16 +1716,16 @@ class WillasHomepage {
   }
 
   resetToDefault() {
-    this.bgColor1.value = "#ff9a9e";
-    this.bgColor2.value = "#fecfef";
-    this.titleColor.value = "#ff69b4";
-    this.textColor.value = "#333333";
-    this.buttonColor.value = "#667eea";
+    this.bgColor1.value = "#6b7280";
+    this.bgColor2.value = "#9ca3af";
+    this.titleColor.value = "#000000";
+    this.textColor.value = "#000000";
+    this.buttonColor.value = "#4b5563";
 
-    document.body.style.background = "";
-    document.documentElement.style.setProperty("--title-color", "");
-    document.documentElement.style.setProperty("--text-color", "");
-    document.documentElement.style.setProperty("--button-color", "");
+    document.body.style.background = "linear-gradient(45deg, #6b7280, #9ca3af)";
+    document.documentElement.style.setProperty("--title-color", "#000000");
+    document.documentElement.style.setProperty("--text-color", "#000000");
+    document.documentElement.style.setProperty("--button-color", "#4b5563");
 
     localStorage.removeItem("customBg1");
     localStorage.removeItem("customBg2");
@@ -1763,6 +1798,8 @@ class WillasHomepage {
   toggleRainbowMode() {
     document.body.classList.toggle("rainbow-mode");
     if (document.body.classList.contains("rainbow-mode")) {
+      // Store the current background before starting party mode
+      this.previousBackground = document.body.style.background;
       this.rainbowBtn.textContent = "🎊 PARTY ON! 🎊";
       this.startLaserRainbow();
     } else {
@@ -1892,8 +1929,12 @@ class WillasHomepage {
       }
     });
 
-    // Reset background to original
-    document.body.style.background = "";
+    // Restore the previous background
+    if (this.previousBackground) {
+      document.body.style.background = this.previousBackground;
+    } else {
+      document.body.style.background = "";
+    }
     document.body.style.transition = "";
   }
 
